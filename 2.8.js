@@ -31,25 +31,26 @@ class LinkedList {
   }
 
   detectLoop () {
-    if (this.head && this.head.next) {
-      let slowIndex = this.head
-      let fastIndex = this.head.next
+    if (this.head?.next) {
+      let slowIndex = this.head?.next
+      let fastIndex = slowIndex?.next
       while (fastIndex?.next?.next) {
         if (fastIndex === slowIndex) {
           // loop detected - now find start of loop
 
-          console.log('loop detected! ' + slowIndex.data + ' ' + slowIndex.next?.data)
+          console.log('loop detected! ' + slowIndex.data + '->' + slowIndex.next?.data)
           slowIndex = this.head
           while (slowIndex !== fastIndex) {
-            // console.log(slowIndex.data + '->' + slowIndex.next?.data + ' ' + fastIndex.data + '->' + fastIndex.next?.data)
+            console.log(slowIndex.data, fastIndex.data)
             slowIndex = slowIndex.next
             fastIndex = fastIndex.next
+
           }
-          // console.log(`slowIndex(${slowIndex.data}) === fastIndex(${fastIndex.data})`)
+          console.log(`slowIndex(${slowIndex.data}) === fastIndex(${fastIndex.data})`)
           return slowIndex
         }
-        slowIndex = slowIndex.next
-        fastIndex = fastIndex.next.next
+        slowIndex = slowIndex?.next
+        fastIndex = fastIndex?.next?.next
       }
     } else {
       console.log('list length less than 2')
@@ -61,13 +62,13 @@ class LinkedList {
 
 const nn = (data) => new Node(data)
 
-let sharedNode = nn('e')
-let ll = new LinkedList(nn('c'))
-ll.push(nn('a'))
-ll.push(nn('s'))
+let sharedNode = nn('x')
+let ll = new LinkedList(nn('0'))
+ll.push(nn('1'))
+ll.push(nn('2'))
 ll.push(sharedNode)
-ll.push(nn('a'))
-ll.push(nn('s'))
+ll.push(nn('3'))
+ll.push(nn('4'))
 
 ll.detectLoop()
 
