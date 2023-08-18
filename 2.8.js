@@ -37,16 +37,12 @@ class LinkedList {
       while (fastIndex?.next?.next) {
         if (fastIndex === slowIndex) {
           // loop detected - now find start of loop
-
-          console.log('loop detected! ' + slowIndex.data + '->' + slowIndex.next?.data)
           slowIndex = this.head
           while (slowIndex !== fastIndex) {
-            console.log(slowIndex.data, fastIndex.data)
             slowIndex = slowIndex.next
             fastIndex = fastIndex.next
-
           }
-          console.log(`slowIndex(${slowIndex.data}) === fastIndex(${fastIndex.data})`)
+          console.log('start of loop: ', slowIndex.data)
           return slowIndex
         }
         slowIndex = slowIndex?.next
